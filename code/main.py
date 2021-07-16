@@ -1,4 +1,4 @@
-from structData import writeData
+from structData import fileIO
 from parser_class import Parser
 from structure_class import structure
 from model_train_class import model_train
@@ -33,14 +33,9 @@ def main():
         #file_name = elements[1]+'_'+elements[0]+'.txt'
         file_name = elements[0]+'_'+elements[1]+'_'+lattice_type+'.txt'
         structures_parameters_list = Parser.parse(lattice_type, file_name)
-    writeData.write(structures_parameters_list,"structData.json")
-    structData=writeData.read("structData.json")
-    #print(structData)
-    for record in structData:
-        #print (record)
-        for data in record:
-            print(data)
-
+    fileIO.write(structures_parameters_list,'data_files/'+ elements[0]+'_'+elements[1]+'_'+lattice_type+'_'+"structData.json") #writing data to text file
+    structData=fileIO.read('data_files/'+ elements[0]+'_'+elements[1]+'_'+lattice_type+'_'+"structData.json") #reading data from text file
+    print(structData[0][2])
     
     pure_element_0_min_energy, pure_element_1_min_energy = structure_helper.get_pure_energies(
             structures_parameters_list, elements)     
