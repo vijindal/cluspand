@@ -1,5 +1,4 @@
 from structure_helper_class import structure_helper
-
 import numpy as np
 import pandas as pd
 from sklearn.metrics import r2_score
