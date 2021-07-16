@@ -5,7 +5,8 @@ class Parser:
     # Parses a given input file and returns a list of parameters for all structures.
     def parse(lattice_type, file_name):
         #file_path = os.path.join(os.getcwd(), '../'+lattice_type+'_txt_files/'+file_name)
-        file_path = os.path.join(os.getcwd(), lattice_type+'_txt_files/'+file_name)
+        #file_path = os.path.join(os.getcwd(), lattice_type+'_txt_files/'+file_name)
+        file_path = os.path.join(os.getcwd(),'data_files/'+file_name)
         f = open(file_path,"r")
         lines = f.readlines()
         
@@ -46,6 +47,7 @@ class Parser:
                 total_energy = list(map(float,re.findall("[+-]?\d+(?:\.\d+)?", lines[i+2])))[1]
                 # Generating a structure parameters list
                 structure_parameters = [name, lattice_type, [a,b,c], source_positions, total_energy]
+                #print(structure_parameters)
                 #Adding the structure_parameters in structures_parameters_list
                 structures_parameters_list.append(structure_parameters)
                 

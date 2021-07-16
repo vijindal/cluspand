@@ -1,3 +1,4 @@
+from structData import writeData
 from parser_class import Parser
 from structure_class import structure
 from model_train_class import model_train
@@ -19,17 +20,27 @@ def main():
 #    max_distance = 3.758550
 #    elements = ['Nb', 'Zr']
 #    max_distance = 3.758550
-    file_name = elements[0]+'_'+elements[1]+'.txt'
+    file_name = elements[0]+'_'+elements[1]+'_'+lattice_type+'.txt'
     
     
     #Parsing the above entered file to get the list of parameters for all 
     #structures.
     try:
-        file_name = elements[0]+'_'+elements[1]+'.txt'
+        #file_name = elements[0]+'_'+elements[1]+'.txt'
+        file_name = elements[0]+'_'+elements[1]+'_'+lattice_type+'.txt'
         structures_parameters_list = Parser.parse(lattice_type, file_name)
     except:
-        file_name = elements[1]+'_'+elements[0]+'.txt'
+        #file_name = elements[1]+'_'+elements[0]+'.txt'
+        file_name = elements[0]+'_'+elements[1]+'_'+lattice_type+'.txt'
         structures_parameters_list = Parser.parse(lattice_type, file_name)
+    writeData.write(structures_parameters_list,"structData.json")
+    structData=writeData.read("structData.json")
+    #print(structData)
+    for record in structData:
+        #print (record)
+        for data in record:
+            print(data)
+
     
     pure_element_0_min_energy, pure_element_1_min_energy = structure_helper.get_pure_energies(
             structures_parameters_list, elements)     
