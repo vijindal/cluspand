@@ -1,6 +1,6 @@
 import json
 
-class writeData:
+class fileIO:
     def write(structData,file_name):
     # open output file for writing
         with open(file_name, 'w') as filehandle:

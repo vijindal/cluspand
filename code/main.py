@@ -5,6 +5,7 @@ from model_train_class import model_train
 from structure_helper_class import structure_helper
 from model_train_helper_class import model_train_helper
 from ConvexHull import convex_hull
+from convex_hull import ConvexHull
 
 #Nb Ti V Zr
 def main():
@@ -28,18 +29,38 @@ def main():
     try:
         #file_name = elements[0]+'_'+elements[1]+'.txt'
         file_name = elements[0]+'_'+elements[1]+'_'+lattice_type+'.txt'
-        structures_parameters_list = Parser.parse(lattice_type, file_name)
+        #structures_parameters_list = Parser.parse(lattice_type, file_name)
+        parsed_data=Parser.parse(lattice_type, elements)
+        structures_parameters_list = parsed_data[0]
+        structDataList=parsed_data[1]
     except:
         #file_name = elements[1]+'_'+elements[0]+'.txt'
         file_name = elements[0]+'_'+elements[1]+'_'+lattice_type+'.txt'
-        structures_parameters_list = Parser.parse(lattice_type, file_name)
-    fileIO.write(structures_parameters_list,'data_files/'+ elements[0]+'_'+elements[1]+'_'+lattice_type+'_'+"structData.json") #writing data to text file
-    structData=fileIO.read('data_files/'+ elements[0]+'_'+elements[1]+'_'+lattice_type+'_'+"structData.json") #reading data from text file
-    print(structData[0][2])
+        parsed_data=Parser.parse(lattice_type, elements)
+        structures_parameters_list = parsed_data[0]
+        structDataList=parsed_data[1]
     
+    #fileIO.write(structDataList,'data_files/'+ elements[0]+'_'+elements[1]+'_'+lattice_type+'_'+"structData.json") #writing data to text file
+    #structDataList=fileIO.read('data_files/'+ elements[0]+'_'+elements[1]+'_'+lattice_type+'_'+"structData.json") #reading data from text file
+
+    concentration=[]
+    mixing_energy=[]
+    for structData in structDataList:
+        concentration.append(structData['composition_frac'])
+        mixing_energy.append(float(structData['enthalpy_formation_atom']))
+    print(concentration)
+    hull = ConvexHull(concentration, mixing_energy)
+    for c, e in zip(hull.concentrations, hull.energies):
+        print(c, e)
+    import matplotlib.pyplot as plt
+    plt.scatter(concentration, mixing_energy, color='darkred')
+    plt.plot(hull.concentrations, hull.energies)
+    plt.show()
+    """ 
     pure_element_0_min_energy, pure_element_1_min_energy = structure_helper.get_pure_energies(
             structures_parameters_list, elements)     
     
+      
     #Storing map from structure name to structure object for easier access.
     structure_name_to_object_map = {}
     #Getting the list of all the structure objects.
@@ -48,7 +69,7 @@ def main():
             structure_object = structure(parameters, str(max_distance), 
                                          elements, pure_element_0_min_energy, 
                                          pure_element_1_min_energy)
-            structure_name_to_object_map[structure_object.name_] = structure_object
+            structure_name_to_object_map[structure_object.name_] = structure_object #adding object 'structure_object' to the map 'structure_name_to_object_map'
         except:
             continue        
     
@@ -58,7 +79,7 @@ def main():
 #    Printing the structures
 #    for structure_object in structure_name_to_object_map.values():
 #        structure_object.print()
-
+    
     convex_hull.draw(structure_name_to_object_map)
     
     model_train_object = model_train(structure_name_to_object_map)
@@ -73,6 +94,7 @@ def main():
 #    model_train_helper.verify_predictions(structure_name_to_object_map, 
 #                                          model_train_object.matinv_object_, 'Matrix Inversion')
     
+"""
 # Calling main function
 if __name__ == "__main__":
     main()
