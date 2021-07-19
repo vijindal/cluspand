@@ -48,7 +48,7 @@ def main():
     for structData in structDataList:
         concentration.append(structData['composition_frac'])
         mixing_energy.append(float(structData['enthalpy_formation_atom']))
-    print(concentration)
+    #print(concentration)
     hull = ConvexHull(concentration, mixing_energy)
     for c, e in zip(hull.concentrations, hull.energies):
         print(c, e)

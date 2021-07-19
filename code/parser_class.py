@@ -61,9 +61,9 @@ class Parser:
                 outputLine=lines[i+1].split(']  ')[1] #removing structure name from the output line
                 #print( outputLine)
                 structData = dict(item.split("=") for item in outputLine.split("| ")) #dictionary of structure data
-                #print(structData['natoms'])
+                #print(structData['nspecies'])
                 #print(structData['stoichiometry'])
-                if int(structData['natoms'])!=1: #adding a new key 'composition_frac' for composition in mol fraction
+                if int(structData['nspecies'])!=1: #adding a new key 'composition_frac' for composition in mol fraction
                     tempDict={'composition_frac':float(structData['stoichiometry'].split(',')[1])}
                     #print("tempDict",tempDict)
                 else:# stoichiometry holds only one value in case of one atom structure 

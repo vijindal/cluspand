@@ -1,0 +1,25 @@
+Unzip this file and the script.
+
+You need to have the files in the folder in which you call the script:
+lat.in (from ATAT)
+POSCAR (from VASP -> we want to convert this to str.out in ATAT format)
+POTCAR (from VASP)
+
+I have included example files in this zip folder.
+
+If these are not the names of the files go to the conversion script and change them in lines 34-36.
+
+Then you just run the script:
+chmod u+x (if you do not already have premission to run it)
+./CONVERT_POSCAR_TO_STROUT.sh
+
+An error occurs if you do not have the lat.in and/or POSCAR and/or POTCAR files.
+Also, if the number of atomic positions in your POSCAR does not match the number of atoms (I dont know why this would be the case ever but say you had a typo) it exits with an error.
+
+Finally, if you have an atom in your POTCAR which is not present in your lat.in the script complains.
+This situation should not really occur: Your structure contains atoms only present in lat.in so the POTCAR should
+not contain other atoms!
+
+That's it.
+
+/Jesper Toft Kristensen, Fall 2013, email: jtk58@cornell.edu

@@ -1,0 +1,22 @@
+==== CONTENT OF FOLDER:
++ convert_ATAT_to_POSCAR.py (script to convert ATAT to POSCAR)
++ str.POSCAR    (the final POSCAR file, for checking the result)
++ str.out       (example ATAT 'str.out' file)
+
+==== ASSUMPTIONS:
++ You need to have ATAT's 'str2cif' tool in your path.
++ You need to have the ASE tool for Python, which currently resides at:
+"https://wiki.fysik.dtu.dk/ase/download.html#"
+
+To convert an ATAT 'str.out' formatted file to POSCAR simply
+specify the name of your str.out file inside the 'convert_ATAT_to_POSCAR.py'
+script. By default the name is 'str.out'. The script issues an error if it
+cannot find the ATAT file.
+
+Then, run the script (assuming you have the 'str.out' file in the same path
+as the Python script):
+python convert_ATAT_to_POSCAR.py
+
+And that's it!
+
+Jesper Kristensen, 2014
