@@ -13,14 +13,19 @@ def main():
 #    file_name = str(input("Enter file name as <filename.txt> : "))
 #    max_distance = float(input("Enter max. points distance : "))
     lattice_type = 'bcc'
-    elements = ['Ti', 'V'] #don't invert
-    max_distance = 3.4
-#    elements = ['V', 'Nb'] #invert
-#    max_distance = 3.516063
-#    elements = ['Ti', 'Zr']
-#    max_distance = 3.758550
-#    elements = ['Nb', 'Zr']
-#    max_distance = 3.758550
+    #elements = ['Nb', 'Ti'] #don't invert
+    # max_distance = 3.4
+    #elements = ['Nb', 'V'] #invert
+    #max_distance = 3.516063
+    #elements = ['Nb', 'Zr']
+    #max_distance = 3.758550
+    #elements = ['Ti', 'V']
+    #max_distance = 3.758550
+    elements = ['Ti', 'Zr']
+    #max_distance = 3.758550
+    #elements = ['V', 'Zr']
+    #max_distance = 3.758550
+
     file_name = elements[0]+'_'+elements[1]+'_'+lattice_type+'.txt'
     
     

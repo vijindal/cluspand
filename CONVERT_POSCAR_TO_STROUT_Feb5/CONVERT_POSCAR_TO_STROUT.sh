@@ -44,7 +44,7 @@ POTCAR=POTCAR   #WHERE IS YOUR "POTCAR"?
 
 if [ ! -f "$LATIN_IN" ]; then
     echo "EEEE"
-    echo "EEEE POSCAR FILE NOT FOUND IN CURRENT DIRECTORY!"
+    echo "EEEE LAT.IN FILE NOT FOUND IN CURRENT DIRECTORY!"
     echo "EEEE"
     exit
 fi
