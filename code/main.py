@@ -12,7 +12,7 @@ def main():
 #    lattice_type = str(input("Enter lattice type : "))
 #    file_name = str(input("Enter file name as <filename.txt> : "))
 #    max_distance = float(input("Enter max. points distance : "))
-    lattice_type = 'bcc'
+    lattice_type = 'hcp'
     #elements = ['Nb', 'Ti'] #don't invert
     # max_distance = 3.4
     #elements = ['Nb', 'V'] #invert
@@ -21,9 +21,9 @@ def main():
     #max_distance = 3.758550
     #elements = ['Ti', 'V']
     #max_distance = 3.758550
-    elements = ['Ti', 'Zr']
+    #elements = ['Ti', 'Zr']
     #max_distance = 3.758550
-    #elements = ['V', 'Zr']
+    elements = ['V', 'Zr']
     #max_distance = 3.758550
 
     file_name = elements[0]+'_'+elements[1]+'_'+lattice_type+'.txt'
